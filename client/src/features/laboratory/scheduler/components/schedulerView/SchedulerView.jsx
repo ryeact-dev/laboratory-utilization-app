@@ -160,15 +160,15 @@ export default function SchedulerView({
             </div>
           </div>
 
+          {/* TODO: THE DEAN ESIGN SHOULD BE FETCH FROM THE BACKEND, THIS IS ONLY TEMPORARY */}
           <div className="flex w-full flex-1 flex-col justify-end">
             <p>Noted by:</p>
             <div className="ml-28">
-              <div className="w-26 h-16"></div>
-              {/* <img
-                src={eSign("Arnel Ang")}
+              <img
+                src={eSign("Gina Fe G. Israel")}
                 className="w-26 h-16 object-contain object-bottom"
                 alt="esign"
-              /> */}
+              />
               <h2 className="-mb-1 mt-2 font-bold uppercase">
                 Gina Fe G. Israel
               </h2>

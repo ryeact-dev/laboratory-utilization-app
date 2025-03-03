@@ -5,6 +5,7 @@ import edwinFlores from "@/assets/esign/edwin-esig.jpg";
 import joeritzBunhayag from "@/assets/esign/joe-esig.jpg";
 import joniferBalbarona from "@/assets/esign/jonifer-esig.png";
 import lutherJacobo from "@/assets/esign/luther-esig.png";
+import ginaFeIsrael from "@/assets/esign/gIsrael-esign.png";
 
 // DEAN OFFICE ASSISTANT
 import jennyRoseProcillo from "@/assets/esign/perocillo-esign.jpg";
@@ -19,6 +20,7 @@ export function eSign(user) {
     "Luther Jacobo": lutherJacobo,
     "Ryan Montoya": lutherJacobo,
     "Jenny Rose Perocillo": jennyRoseProcillo,
+    "Gina Fe G. Israel": ginaFeIsrael,
   };
 
   return esignMap[user?.trim()] || null;
