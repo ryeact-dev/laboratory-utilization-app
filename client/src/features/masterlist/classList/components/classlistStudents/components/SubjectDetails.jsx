@@ -1,6 +1,6 @@
 export default function SubjectDetails({ fetchedSubject }) {
   return fetchedSubject.data.length > 0 ? (
-    <section className="flex items-center justify-between rounded-md bg-accent/50 px-4 py-[6px] text-base font-semibold">
+    <section className="flex items-center justify-between rounded-md border border-accent bg-accent/10 px-4 py-[6px] text-base font-medium">
       <h2>
         {fetchedSubject.data[0].code} -{" "}
         {fetchedSubject.data[0].title.toUpperCase()}{" "}
