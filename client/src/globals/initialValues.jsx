@@ -234,6 +234,7 @@ export const DEPARTMENT = [
   "JHS Department",
   "SHS Department",
   "N/A",
+  "UM Tagum College",
 ];
 
 export const PROGRAM = [
