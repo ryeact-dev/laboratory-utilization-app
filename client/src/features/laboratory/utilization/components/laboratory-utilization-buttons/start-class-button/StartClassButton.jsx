@@ -57,7 +57,10 @@ export default function StartClassButton({
     // RETURN NULL IF THERE IS NO STUDENT IN THE CLASSLIST FOR
     // SELECT SUBJECT
     if (subjectId && students.length === 0) {
-      ToastNotification("error", "No students for this subject");
+      ToastNotification(
+        "error",
+        "Cannot start class: No students enrolled in this subject",
+      );
       return;
     }
 
