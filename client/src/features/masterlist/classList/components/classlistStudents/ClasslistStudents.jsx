@@ -186,7 +186,10 @@ function ClasslistStudents({
                     setPage((old) => old + 1);
                   }
                 }}
-                disabled={paginatedClasslist?.hasMore}
+                disabled={
+                  paginatedClasslist?.hasMore &&
+                  fetchedSubject.data[0].students.length > 0
+                }
               >
                 Next
               </Button>
