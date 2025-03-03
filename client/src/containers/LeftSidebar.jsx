@@ -57,9 +57,9 @@ export default function LeftSidebar({
           timeClass="text-3xl"
           className="mb-4 block sm:hidden"
         />
-        <div className="my-2">
+        {/* <div className="my-2">
           <Footer />
-        </div>
+        </div> */}
       </div>
     </div>
   );
