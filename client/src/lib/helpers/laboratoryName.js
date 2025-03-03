@@ -1,0 +1,36 @@
+export function laboratoryName(laboratory) {
+  const mapLaboratoryName = {
+    "Computing Lab M1": "Computing Laboratories (Main)",
+    "Computing Lab M2": "Computing Laboratories (Main)",
+    "Computing Lab V1": "Computing Laboratories (Visayan)",
+    "Computing Lab V2": "Computing Laboratories (Visayan)",
+    "Computing Lab V3": "Computing Laboratories (Visayan)",
+    "Engg Computer Lab": "Engineering Computer Laboratory",
+    "Electronics Lab": "Electronics Laboratory",
+    "Electronics Lab Ext.": "Electronics Laboratory",
+    "Purposive Comm Lab": "Purposive Communication Laboratory",
+    "Speech Comm Lab": "Speech Communication Laboratory",
+    "Office Practice Lab": "Office Practice Laboratory",
+    "Psychology Lab": "Psychology Laboratory",
+    Bistro: "HRM Laboratories",
+    Catering: "HRM Laboratories",
+    Bar: "HRM Laboratories",
+    "Mini-Hotel": "HRM Laboratories",
+    "Hot Kitchen": "HRM Laboratories",
+    "Dark Room": "Criminology Laboratories",
+    "Crime Scene Room": "Criminology Laboratories",
+    "Interrogation Room": "Criminology Laboratories",
+    "Forensic Lab": "Criminology Laboratories",
+    "Polygraph Room": "Criminology Laboratories",
+    "Fire Testing Room": "Criminology Laboratories",
+    "Moot Court": "Criminology Laboratories",
+    "Chemistry Lab - Main": "Science Laboratories (Main)",
+    "Biology Lab - Main": "Science Laboratories (Main)",
+    "Physics Lab - Main": "Science Laboratories (Main)",
+    "Micro-Bio Lab - Main": "Science Laboratories (Main)",
+    "Physics Lab - Visayan": "Science Laboratories (Visayan)",
+    "Chemistry Lab - Visayan": "Science Laboratories (Visayan)",
+  };
+
+  return mapLaboratoryName[laboratory];
+}

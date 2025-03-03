@@ -1,0 +1,290 @@
+/* @import url("https://cdn.syncfusion.com/ej2/material-dark.css"); */
+/* @import url("https://fonts.googleapis.com/css2?family=Six+Caps&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
+/* Number fonts */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 20%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 20%;
+    --border: 0 0% 90%;
+    --input: 0 0% 100%;
+    --primary: 0 97.06% 26.67%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 100% 51.37%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 215.09 75.38% 39.91%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: 0 100% 60%;
+    --chart-1: 0 97.06% 26.67%;
+    --chart-2: 45 100% 51.37%;
+    --chart-3: 214.9 75.37% 39.8%;
+    --chart-4: 210 47% 53%;
+    --chart-5: 0 103% 60%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 6.15%;
+    --foreground: 0 0% 95%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 95%;
+    --popover: 0 0% 6.92%;
+    --popover-foreground: 0 0% 95%;
+    --card: 0 0% 16%;
+    --card-foreground: 0 0% 95%;
+    --border: 0 0% 30%;
+    --input: 0 0% 20%;
+    --primary: 0 84.28% 44.9%;
+    --primary-foreground: 0 0% 94.9%;
+    --secondary: 41.47 100% 60%;
+    --secondary-foreground: 0 0% 7.45%;
+    --accent: 0 96.06% 60.2%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 0% 84%;
+    --destructive-foreground: 0 0% 3.85%;
+    --ring: 0 0% 76.15%;
+    --chart-1: 0 84.28% 44.9%;
+    --chart-2: 41.47 100% 60%;
+    --chart-3: 0 96.06% 60.2%;
+    --chart-4: 41.47 100% 63%;
+    --chart-5: 0 87.28% 44.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply relative hidden w-fit cursor-pointer after:absolute after:-mt-1 after:block after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-secondary after:transition after:duration-300 after:content-[''] after:hover:scale-x-100 md:block;
+  }
+
+  .pass-indicator {
+    @apply before:absolute before:h-full before:w-1/2 before:rounded before:transition-[width] before:duration-300 before:ease-in-out before:content-[''];
+  }
+
+  .scrollbar {
+    @apply float-left mb-6 h-[300px] w-full overflow-scroll;
+  }
+  .force-overflow {
+    @apply min-h-[450px];
+  }
+
+  #scroll-bar-design::-webkit-scrollbar {
+    @apply w-3 bg-gray-700;
+  }
+  #scroll-bar-design::-webkit-scrollbar-thumb {
+    @apply rounded-lg bg-card/60;
+  }
+
+  /* CHANGE THE TEXT COLOR OF THE TOOLTIP */
+  .tooltip::before {
+    @apply text-white;
+  }
+  .menu::before {
+    @apply hidden;
+  }
+
+  /* HIDES THE CLASS WHEN NO IN PRINTING MODE */
+  .forPrint {
+    @apply hidden;
+  }
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+/* ----------Scheduler Specific CSS---------- */
+
+/* Hide Popups */
+.e-quick-popup-wrapper {
+  display: none !important;
+}
+
+/* Cell Schedule Wrapper for Appointment */
+.e-schedule .e-vertical-view .e-day-wrapper .e-appointment {
+  width: 100% !important;
+  /* display: flex; */
+  /* align-items: center; */
+  /* margin-top: 2px; */
+  left: 50% !important;
+  transform: translate(-50%, 0);
+  /* border-radius: 5px; */
+  background-color: transparent;
+  /* border-color: white;
+  border-width: 2px; */
+}
+
+/* Hides the recurrence icon */
+.e-schedule .e-appointment .e-recurrence-icon::before {
+  display: none;
+}
+
+/* Time Slots text */
+/* .e-time-slots {
+  color: #0f0f0f !important;
+} */
+
+/* .e-control,
+  .e-toolbar .e-tbar-btn .e-tbar-btn-text {
+    font-family: 'Poppins', 'sans-serif';
+  } */
+
+.e-schedule .e-vertical-view .e-header-cells {
+  height: 40px;
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.e-schedule .e-vertical-view .e-work-cells:hover {
+  /* border-width: 0 1px 0 0 !important;  */
+  background-color: transparent !important;
+}
+
+@media print {
+  @page {
+    margin: 2rem 1.5rem 2rem;
+  }
+
+  html,
+  body {
+    height: auto; /* Use 100% here to support printing more than a single page*/
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+  }
+
+  .forPrint {
+    display: block;
+  }
+
+  /* SCHEDULER COLOR CODING INFO */
+  .flexPrint {
+    display: flex;
+  }
+
+  /* SCHEDULES TEXT SIZES */
+  /* .subject {
+      font-size: 16px;
+    }
+    .event-description {
+      font-size: 14px;
+    }
+    .time {
+      font-size: 12px;
+    } */
+  /* .subject,
+    .event-description,
+    .time {
+      word-wrap: break-word !important;
+      width: 12px !important;
+    } */
+
+  /* TOP SCHEDULER TOOLBARS */
+  .e-schedule .e-schedule-toolbar,
+  .hideWhenPrinting {
+    display: none;
+  }
+
+  .e-schedule .e-vertical-view .e-header-cells .e-header-date,
+  .e-schedule .e-schedule-table .e-time-cells-wrap .e-current-time,
+  .e-schedule
+    .e-schedule-table
+    .e-content-table
+    .e-timeline-wrapper
+    .e-previous-timeline,
+  .e-schedule
+    .e-schedule-table
+    .e-content-table
+    .e-timeline-wrapper
+    .e-current-timeline {
+    display: none !important;
+  }
+
+  /* TODO need to check if the clock time and current time overlaps the clock time disappears in the printing */
+  .e-schedule
+    .e-schedule-table
+    .e-time-cells-wrap
+    .e-schedule-table
+    .e-time-slots {
+    display: block !important;
+    background-color: #fff !important;
+    color: #1c1c1c !important;
+  }
+
+  .e-schedule .e-vertical-view .e-header-cells {
+    background-color: #fff !important;
+    border: 0.3px solid #1c1c1c !important;
+    color: #1c1c1c !important;
+  }
+
+  .e-schedule .e-vertical-view .e-work-hours {
+    background-color: #fff !important;
+    border: 0.3px solid #1c1c1c !important;
+  }
+
+  .e-schedule .e-vertical-view .e-work-cells {
+    /* border-width: 0 1px 0 0 !important; */
+    border-color: #eee !important;
+  }
+
+  .e-schedule {
+    height: 1088px !important;
+  }
+
+  /* Time Slots and Days text */
+  .e-time-slots,
+  .e-schedule .e-vertical-view .e-header-cells .e-header-day {
+    color: #0f0f0f !important;
+    font-size: large !important;
+    font-weight: 500 !important;
+  }
+
+  /* Subject Title and Time Slots text */
+  .schedule-text {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .schedule-subtext {
+    font-size: 1.4rem !important;
+    margin-top: 0.5rem !important;
+  }
+
+  /* Cell Schedule Wrapper for Appointment */
+  .e-schedule .e-vertical-view .e-day-wrapper .e-appointment {
+    border-color: #000 !important;
+    border-width: 0px !important;
+    /* border-radius: 0px !important; */
+  }
+}
+
+.rdp-vhidden {
+  @apply hidden;
+}

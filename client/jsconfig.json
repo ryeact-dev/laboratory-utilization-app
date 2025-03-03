@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+      // "@/api/*": ["./api/*"],
+      // "@/assets/*": ["./assets/*"],
+      // "@/common/*": ["./common/*"],
+      // "@/containers/*": ["./containers/*"],
+      // "@/features/*": ["./features/*"],
+      // "@/globals/*": ["./globals/*"],
+      // "@/pages/*": ["./pages/*"],
+      // "@/schemas/*": ["./schemas/*"],
+      // "@/setup/*": ["./setup/*"],
+      // "@/store/*": ["./store/*"],
+      // "@/utils/*": ["./utils/*"],
+      // "@/hooks/*": ["./hooks/*"]
+    }
+  }
+}
