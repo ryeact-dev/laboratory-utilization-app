@@ -31,13 +31,13 @@ function Classlist({ activeSchoolYear, activeTermSem, currentUser }) {
               className="-mt-8 mb-6 flex items-center justify-center gap-8 text-xl font-semibold uppercase text-secondary"
             >
               <div className="flex items-center gap-2">
-                <LaptopMinimal />
+                <LaptopMinimal size={24} />
                 <p>
                   {subject?.code}-{subject?.title}
                 </p>
               </div>
               <div className="flex items-center gap-2">
-                <CircleUserRound />
+                <CircleUserRound size={24} />
                 <p>{subject?.instructor}</p>
               </div>
             </div>
