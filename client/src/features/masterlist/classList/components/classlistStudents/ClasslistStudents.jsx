@@ -41,7 +41,7 @@ function ClasslistStudents({
 
   const deleteClasslistStudentMutation = useRemoveStudents();
 
-  // * Function to remove the student from the class
+  // Function to remove the student from the class
   const removeStudent = (studentId) => {
     const updatedClasslist = classlist.filter((uuid) => uuid !== studentId);
 
@@ -52,16 +52,6 @@ function ClasslistStudents({
     };
 
     deleteClasslistStudentMutation.mutate(forDeletionData);
-
-    // openModal({
-    //   title: 'Confirmation',
-    //   bodyType: MODAL_BODY_TYPES.CONFIRMATION,
-    //   extraObject: {
-    //     message: `Are you sure you want to remove the student?`,
-    //     type: CONFIRMATION_MODAL_CLOSE_TYPES.REMOVE_CLASSLIST_STUDENT,
-    //     forDeletionData,
-    //   },
-    // });
   };
 
   const onBatchUploadClick = () => {
