@@ -18,6 +18,7 @@ import {
 import { TABLE_HEADER_BADGE_CLASS } from "@/globals/initialValues";
 import { useGetCurrentUserData } from "@/hooks/users.hook";
 import { Users } from "lucide-react";
+import LoadingSpinner from "@/common/loadingSpinner/LoadingSpinner";
 
 function ClasslistStudents({
   fetchedSubject,
@@ -85,108 +86,114 @@ function ClasslistStudents({
           variant="secondary"
           type="button"
           onClick={onBatchUploadClick}
-          className="font-bold"
+          className="font-semibold"
         >
           <Users strokeWidth={2.5} /> Upload Batch Students
         </Button>
       </article>
 
-      <Card>
-        <CardHeader>
-          <SubjectDetails fetchedSubject={fetchedSubject} />
-        </CardHeader>
-        <CardContent className="">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className={TABLE_HEADER_BADGE_CLASS}>
-                  PC No.
-                </TableHead>
-                <TableHead className={TABLE_HEADER_BADGE_CLASS}>
-                  ID No.
-                </TableHead>
-                <TableHead className={TABLE_HEADER_BADGE_CLASS}>Name</TableHead>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <Card>
+          <CardHeader>
+            <SubjectDetails fetchedSubject={fetchedSubject} />
+          </CardHeader>
+          <CardContent className="">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className={TABLE_HEADER_BADGE_CLASS}>
+                    PC No.
+                  </TableHead>
+                  <TableHead className={TABLE_HEADER_BADGE_CLASS}>
+                    ID No.
+                  </TableHead>
+                  <TableHead className={TABLE_HEADER_BADGE_CLASS}>
+                    Name
+                  </TableHead>
 
-                <TableHead className={TABLE_HEADER_BADGE_CLASS}>
-                  Actions
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {paginatedClasslist &&
-                classlist.length > 0 &&
-                paginatedClasslist.students?.map(
-                  ({ id_number, full_name, id }, index) => (
-                    <TableRow key={index}>
-                      <TableCell
-                        className=""
-                        style={{ fontFamily: "Roboto Mono" }}
-                      >
-                        {studentWorkstationNumber(index + 1)}
-                      </TableCell>
+                  <TableHead className={TABLE_HEADER_BADGE_CLASS}>
+                    Actions
+                  </TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {paginatedClasslist &&
+                  classlist.length > 0 &&
+                  paginatedClasslist.students?.map(
+                    ({ id_number, full_name, id }, index) => (
+                      <TableRow key={index}>
+                        <TableCell
+                          className=""
+                          style={{ fontFamily: "Roboto Mono" }}
+                        >
+                          {studentWorkstationNumber(index + 1)}
+                        </TableCell>
 
-                      <TableCell
-                        className=""
-                        style={{ fontFamily: "Roboto Mono" }}
-                      >
-                        {id_number}
-                      </TableCell>
-                      <TableCell className="">{full_name}</TableCell>
+                        <TableCell
+                          className=""
+                          style={{ fontFamily: "Roboto Mono" }}
+                        >
+                          {id_number}
+                        </TableCell>
+                        <TableCell className="">{full_name}</TableCell>
 
-                      <TableCell className="flex flex-col">
-                        {currentUser.role === "Admin" || isSubjectActive ? (
-                          <Badge
-                            onClick={() => removeStudent(id)}
-                            className="flex w-16 justify-center rounded-full border-none py-0 font-normal shadow-none hover:cursor-pointer hover:font-medium"
-                          >
-                            remove
-                          </Badge>
-                        ) : (
-                          ""
-                        )}
-                      </TableCell>
-                    </TableRow>
-                  ),
-                )}
-            </TableBody>
-          </Table>
+                        <TableCell className="flex flex-col">
+                          {currentUser.role === "Admin" || isSubjectActive ? (
+                            <Badge
+                              onClick={() => removeStudent(id)}
+                              className="flex w-16 justify-center rounded-full border-none py-0 font-normal shadow-none hover:cursor-pointer hover:font-medium"
+                            >
+                              remove
+                            </Badge>
+                          ) : (
+                            ""
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    ),
+                  )}
+              </TableBody>
+            </Table>
 
-          {paginatedClasslist?.hasMore ? (
-            <p className="mt-2 text-center">***Nothing Follows***</p>
-          ) : null}
-        </CardContent>
+            {paginatedClasslist?.hasMore ? (
+              <p className="mt-2 text-center">***Nothing Follows***</p>
+            ) : null}
+          </CardContent>
 
-        <CardFooter className="mt-3 flex items-center justify-between gap-4">
-          <div>
-            <label className="px-2 text-xs">Page: {page + 1}</label>
-          </div>
-          <div>
-            <Button
-              variant="ghost"
-              size="sm"
-              type="button"
-              onClick={() => setPage((old) => Math.max(old - 1, 0))}
-              disabled={page === 0}
-            >
-              Previous
-            </Button>
+          <CardFooter className="mt-3 flex items-center justify-between gap-4">
+            <div>
+              <label className="px-2 text-xs">Page: {page + 1}</label>
+            </div>
+            <div>
+              <Button
+                variant="ghost"
+                size="sm"
+                type="button"
+                onClick={() => setPage((old) => Math.max(old - 1, 0))}
+                disabled={page === 0}
+              >
+                Previous
+              </Button>
 
-            <Button
-              variant="ghost"
-              size="sm"
-              type="button"
-              onClick={() => {
-                if (!isPlaceholderData || paginatedClasslist?.hasMore) {
-                  setPage((old) => old + 1);
-                }
-              }}
-              disabled={paginatedClasslist?.hasMore}
-            >
-              Next
-            </Button>
-          </div>
-        </CardFooter>
-      </Card>
+              <Button
+                variant="ghost"
+                size="sm"
+                type="button"
+                onClick={() => {
+                  if (!isPlaceholderData || paginatedClasslist?.hasMore) {
+                    setPage((old) => old + 1);
+                  }
+                }}
+                disabled={paginatedClasslist?.hasMore}
+              >
+                Next
+              </Button>
+            </div>
+          </CardFooter>
+        </Card>
+      )}
     </article>
   );
 }
