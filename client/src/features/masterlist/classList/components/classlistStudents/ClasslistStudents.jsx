@@ -143,7 +143,7 @@ function ClasslistStudents({
                           {currentUser.role === "Admin" || isSubjectActive ? (
                             <Badge
                               onClick={() => removeStudent(id)}
-                              className="flex w-16 justify-center rounded-full border-none py-0 font-normal shadow-none hover:cursor-pointer hover:font-medium"
+                              className="flex w-16 justify-center rounded-full border-none py-0 font-normal shadow-none hover:cursor-pointer hover:!bg-primary/80 hover:font-medium"
                             >
                               remove
                             </Badge>
