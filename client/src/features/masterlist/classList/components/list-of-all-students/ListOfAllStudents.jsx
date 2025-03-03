@@ -94,7 +94,7 @@ export default function ListOfAllStudents({
     <p>Loading Data</p>
   ) : (
     <section className="-mt-2 w-5/6 flex-col">
-      <article className="mb-4">
+      <article className="mb-3">
         <p className="text-xl font-medium tracking-wide">
           List of all students
         </p>
