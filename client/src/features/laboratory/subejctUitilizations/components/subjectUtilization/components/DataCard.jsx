@@ -37,7 +37,7 @@ export default function DataCard({ chartData }) {
             <p className="flex items-center gap-2 text-sm">
               <CalendarPlus size={16} className="text-primary-focus" /> Make-up:{" "}
               <span className="font-medium">
-                {item.reservationUsage
+                {item.reservationClassUsage
                   ? ` 
               ${item.reservationClassUsage < 1 ? item.reservationClassUsage.toString().split(".")[1] : item.reservationClassUsage} ${
                 item.reservationClassUsage > 1
