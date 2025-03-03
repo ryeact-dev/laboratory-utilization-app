@@ -15,6 +15,7 @@ const jwt = require('jsonwebtoken');
 const { dbActiveSchoolYear } = require('../util/dbActiveSchoolYear');
 const getOnlineUsers = require('../util/onlineUsers');
 const jwtSecret = process.env.JWTSECRET;
+const clientVersion = process.env.CLIENT_VERSION;
 
 // Set cookie expiration date to one month from now
 const currentDate = new Date();
@@ -33,6 +34,14 @@ const expirationDate = new Date(
  * @returns {Object} JSON response with current user info and school year details
  */
 async function getCurrentUserData(req, res, next) {
+  const { client_version } = req.query;
+  console.log('client v:', client_version, ':: api client v:', clientVersion);
+
+  // Check if client version is valid
+  if (client_version !== clientVersion) {
+    return res.status(403).send('Invalid client version');
+  }
+
   try {
     // Extract user info excluding email for security
     const { email, ...userInfo } = req.user;

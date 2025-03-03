@@ -2,7 +2,10 @@ import axios from "axios";
 
 // GET CURRENT USER DATA
 export async function getCurrentUserData() {
-  const { data } = await axios.get("/api/current-user-data");
+  const clientVersion = import.meta.env.VITE_CLIENT_VERSION;
+  const { data } = await axios.get(
+    `/api/current-user-data?client_version=${clientVersion}`,
+  );
   return data;
 }
 
