@@ -3,6 +3,7 @@ import {
   SCHEDULER_START_TIME,
   PROGRAM,
   SCHEDULER_END_TIME,
+  TERM,
 } from "@/globals/initialValues";
 import { Label } from "@/common/ui/label";
 import { Input } from "@/common/ui/input";
@@ -48,32 +49,42 @@ function AddSubjectInputs({ form, timeError, teachers }) {
         </div>
       </div>
 
-      {/* Subject Instructor */}
-      <div className="-mt-1 mb-2 flex items-start justify-between gap-4">
-        <div className="w-full">
+      <div className="my-3 flex w-full items-start justify-between gap-3">
+        <div className="max-w-48 flex-1 shrink-0">
           <Label className="font-normal">Program</Label>
-
           <SelectWithSearch
             noResultText={"Program not found"}
-            placeholder={"Search Program here..."}
+            placeholder={"Program here..."}
             dataArray={PROGRAM}
             onSelectChange={onSelectValueChange}
             fieldName={"program"}
             fieldValue={watch("program")}
           />
-
           <ErrorText>
             {errors?.program ? errors?.program.message : ""}
           </ErrorText>
         </div>
+
+        <div className="max-w-48 flex-1 shrink-0">
+          <Label className="font-normal">Program</Label>
+          <SelectItems
+            dataArray={TERM}
+            onValueChange={(value) => setValue("term", value)}
+            value={watch("term")}
+            placeholder={"Select Term"}
+            placeholderWidth={"w-full"}
+          />
+          <ErrorText>{errors?.term ? errors?.term.message : ""}</ErrorText>
+        </div>
       </div>
 
+      {/* Subject Instructor */}
       <div className="-mt-1 mb-2 flex items-start justify-between gap-4">
         <div className="w-full">
           <Label className="font-normal">Instructor Name</Label>
           <SelectWithSearch
             noResultText={"Teacher not found"}
-            placeholder={"Search Instructor here..."}
+            placeholder={"Instructor here..."}
             dataArray={teachers}
             onSelectChange={onSelectValueChange}
             fieldName={"instructor_id"}

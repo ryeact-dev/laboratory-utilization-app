@@ -11,9 +11,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { subjectSchema } from "@/schemas/zodSchema";
 
 export default function AddSubjectModalBody({ closeModal, extraObject }) {
-  const { activeSchoolYear, activeTermSem } = useGetCurrentUserData();
+  const { activeSchoolYear } = useGetCurrentUserData();
 
-  const { subject, currentUser } = extraObject;
+  const { subject, currentUser, selectedTermAndSem } = extraObject;
   const [timeError, setTimeError] = useState("");
 
   const { mutate: addEditSubjectMutation, isPending } =
@@ -27,6 +27,11 @@ export default function AddSubjectModalBody({ closeModal, extraObject }) {
   });
 
   const onSubmit = (subjectDetails) => {
+    let termSem = null;
+    if (selectedTermAndSem === "First Semester") {
+      termSem = `${subjectDetails.term} - 1st Sem`;
+    } else termSem = `${subjectDetails.term} - 2nd Sem`;
+
     const { start_time, end_time } = subjectDetails;
 
     // Utils to check the total hours between selected times
@@ -47,7 +52,7 @@ export default function AddSubjectModalBody({ closeModal, extraObject }) {
       school_year: activeSchoolYear,
       id: subject && subject.id,
       user: currentUser.fullName,
-      term_sem: activeTermSem,
+      term_sem: termSem,
       schedule: 0,
     };
 

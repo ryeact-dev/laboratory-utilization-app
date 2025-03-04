@@ -71,6 +71,7 @@ export const subjectSchema = z.object({
   start_time: z.string().trim().min(1, "Start time is required"),
   end_time: z.string().trim().min(1, "End time is required"),
   instructor_id: z.string().trim().min(1, "Instructor is required"),
+  term: z.string().trim().min(1, "Term is required"),
   schedule: z.number(),
 });
 

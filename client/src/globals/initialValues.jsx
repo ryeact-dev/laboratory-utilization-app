@@ -50,6 +50,7 @@ export const INITIAL_SUBJECT_OBJ = {
   schedule: 0,
   program: "",
   instructor_id: "",
+  term: "",
 };
 
 export const INITIAL_SCHEDULE_OBJ = {
@@ -167,6 +168,11 @@ export const OFFICE_ITEM_MEASUREMENTS = [
   { value: "ream", label: "Ream" },
   { value: "roll", label: "Roll" },
   { value: "unit", label: "Unit" },
+];
+
+export const TERM = [
+  { value: "1st Term", label: "1st Term" },
+  { value: "2nd Term", label: "2nd Term" },
 ];
 
 export const DAYS = [

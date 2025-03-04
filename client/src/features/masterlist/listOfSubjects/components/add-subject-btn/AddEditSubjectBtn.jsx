@@ -4,7 +4,11 @@ import { MODAL_BODY_TYPES } from "@/globals/globalConstantUtil";
 import { Button } from "@/common/ui/button";
 import { CirclePlus, SquarePen } from "lucide-react";
 
-function AddEditSubjectBtn({ currentUser, subjectObj = null }) {
+function AddEditSubjectBtn({
+  currentUser,
+  subjectObj = null,
+  selectedTermAndSem,
+}) {
   const openModal = modalStore((state) => state.openModal);
 
   const openAddEditSubjectModal = (currentUser, subject) => {
@@ -13,7 +17,7 @@ function AddEditSubjectBtn({ currentUser, subjectObj = null }) {
     const payload = {
       title,
       bodyType: MODAL_BODY_TYPES.SUBJECT_ADD_NEW,
-      extraObject: { subject, currentUser },
+      extraObject: { subject, currentUser, selectedTermAndSem },
     };
 
     openModal(payload);

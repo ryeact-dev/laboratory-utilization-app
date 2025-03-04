@@ -89,7 +89,10 @@ export default function ListOfSubjects({
                   className="pl-8 sm:w-[150px] lg:w-[250px]"
                 />
               </div>
-              <AddEditSubjectBtn currentUser={currentUser} />
+              <AddEditSubjectBtn
+                currentUser={currentUser}
+                selectedTermAndSem={selectedTermAndSem}
+              />
             </div>
           </div>
         </div>
