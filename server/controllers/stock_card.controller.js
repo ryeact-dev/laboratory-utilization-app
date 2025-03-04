@@ -235,7 +235,7 @@ async function getPaginatedLaboratoryStockCards(req, res, next) {
         sr.remarks AS remarks
       FROM
         stockcard AS s
-      INNER JOIN
+      LEFT JOIN
         stockcard_${stockType} AS so ON s.id = so.stockcard_id
       INNER JOIN
         users AS u ON s.created_by = u.id
