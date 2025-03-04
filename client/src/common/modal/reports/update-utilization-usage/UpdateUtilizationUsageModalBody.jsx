@@ -15,6 +15,9 @@ export default function UpdateUtilizationUsageModalBody({
   const { mutate: updateUtilizationTimeAndUsageMutation, isPending } =
     useUpdateUtilizationTimeAndUsage(closeModal);
 
+  const schedStartHour = format(new Date(singleUsage?.sched_start_time), "hh");
+  const schedEndHour = format(new Date(singleUsage?.sched_end_time), "hh");
+
   const usageDate = format(new Date(singleUsage?.usage_date), "MMM dd, yyyy");
 
   const usageStartHour = format(new Date(singleUsage?.start_time), "hh");
@@ -109,6 +112,12 @@ export default function UpdateUtilizationUsageModalBody({
     setTotalUsageTime(getUsageTime(usageStartTime, usageEndTime));
   }, [endTime, startTime, usageDate]);
 
+  const filteredHours = HOURS_12.filter(
+    (hour) =>
+      Number(hour.value) >= Number(schedStartHour) &&
+      Number(hour.value) <= Number(schedEndHour),
+  );
+
   return (
     <form onSubmit={onSubmitHandle}>
       <div className="flex items-center justify-between gap-2">
@@ -123,7 +132,7 @@ export default function UpdateUtilizationUsageModalBody({
               <SelectItems
                 selectContentClassName="min-w-[1rem]"
                 placeholderWidth={"w-16"}
-                dataArray={HOURS_12}
+                dataArray={filteredHours}
                 value={startTime.hr}
                 onValueChange={(value) => onTimeChange(value, "start-hr")}
               />
@@ -152,7 +161,7 @@ export default function UpdateUtilizationUsageModalBody({
               <SelectItems
                 selectContentClassName="min-w-[1rem]"
                 placeholderWidth={"w-16"}
-                dataArray={HOURS_12}
+                dataArray={filteredHours}
                 value={endTime.hr}
                 onValueChange={(value) => onTimeChange(value, "end-hr")}
               />
