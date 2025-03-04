@@ -16,7 +16,7 @@ export default function LaboratoryUtilizationTab({ tab, setSearchParams }) {
       badgeColor: "bg-primary",
     },
     {
-      title: "Not-Ended Utilization",
+      title: "On-going Utilization",
       data: "",
       indicator: false,
       badgeColor: "bg-primary",
