@@ -120,7 +120,6 @@ export default function AddManualUtilizationSheetBody({ dataObj }) {
             setDate={onDateChange}
             formattedDate={formattedDate}
             minDate={minDate}
-            maxDate={usageDate}
           />
         </div>
         <div className="flex-1">

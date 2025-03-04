@@ -13,7 +13,7 @@ export function DatePicker({
   date,
   setDate,
   minDate,
-  maxDate,
+  maxDate = new Date(),
   excludeDates,
   className,
   ...rest
