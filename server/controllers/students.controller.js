@@ -285,8 +285,6 @@ async function addBulkStudents(req, res, next) {
   const duplicates = [];
   let count = 0;
 
-  console.log('rows', rows, addedBy);
-
   try {
     // Loop through each row in the Excel file
     for (let i = 1; i < rows.length; i++) {
