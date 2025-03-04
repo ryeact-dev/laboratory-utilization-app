@@ -15,7 +15,13 @@ import { useGetCurrentUserData } from "@/hooks/users.hook";
 const WEEKDAYS = ["MO", "TU", "WE", "TH", "FR", "SA"];
 
 export default function AddScheduleModalBody({ closeModal, extraObject }) {
-  const { currentUser, scheduleObj, laboratory, schedulerData } = extraObject;
+  const {
+    currentUser,
+    scheduleObj,
+    laboratory,
+    schedulerData,
+    selectedTermAndSem,
+  } = extraObject;
 
   const { activeSchoolYear, activeTermSem } = useGetCurrentUserData();
 
@@ -62,7 +68,7 @@ export default function AddScheduleModalBody({ closeModal, extraObject }) {
       fetchedSubject,
       date,
       scheduleObj,
-      activeTermSem,
+      selectedTermAndSem,
       activeSchoolYear,
       laboratory,
       currentUser,
@@ -98,6 +104,8 @@ export default function AddScheduleModalBody({ closeModal, extraObject }) {
         fetchedSubject={fetchedSubject}
         selectedDays={selectedDays}
         setSelectedDays={setSelectedDays}
+        selectedTermAndSem={selectedTermAndSem}
+        activeSchoolYear={activeSchoolYear}
       />
       <div className="mt-4">
         <BottomButtons

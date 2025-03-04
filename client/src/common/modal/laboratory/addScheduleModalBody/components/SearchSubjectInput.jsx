@@ -4,7 +4,6 @@ import { getSingleSubject } from "@/api/subjects.api";
 import { Label } from "@/common/ui/label";
 import SearchInput from "@/common/inputs/SearchInput";
 
-import { useGetCurrentUserData } from "@/hooks/users.hook";
 import { CircleUserRound, Clock, SquareMenu } from "lucide-react";
 import { format } from "date-fns";
 
@@ -12,9 +11,9 @@ export default function SearchSubjectInput({
   form,
   setFetchedSubject,
   fetchedSubject,
+  selectedTermAndSem,
+  activeSchoolYear,
 }) {
-  const { activeSchoolYear, activeTermSem } = useGetCurrentUserData();
-
   const fetchSubject = async (subjectCode) => {
     if (!subjectCode) {
       ToastNotification("error", "Please input a subject code");
@@ -33,7 +32,7 @@ export default function SearchSubjectInput({
       return;
     }
 
-    const result = data.filter((item) => item.term_sem === activeTermSem);
+    const result = data.filter((item) => item.term_sem === selectedTermAndSem);
 
     if (result.length === 0) {
       ToastNotification(

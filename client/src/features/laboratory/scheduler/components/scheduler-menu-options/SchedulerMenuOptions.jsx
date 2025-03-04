@@ -56,6 +56,7 @@ export default function SchedulerMenuOptions({
           currentUser,
           isUpdateSchedule: false,
           scheduleData: null,
+          selectedTermAndSem,
         },
         size: "max-w-lg",
       };

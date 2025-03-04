@@ -21,6 +21,8 @@ export default function ScheduleFormDetails({
   setSelectedDays,
   setIsManualTime,
   isManualTime,
+  selectedTermAndSem,
+  activeSchoolYear,
 }) {
   const isFaculty =
     currentUser.role === "Program Head" ||
@@ -43,6 +45,8 @@ export default function ScheduleFormDetails({
         exludedDates={exludedDates}
         setFetchedSubject={setFetchedSubject}
         fetchedSubject={fetchedSubject}
+        selectedTermAndSem={selectedTermAndSem}
+        activeSchoolYear={activeSchoolYear}
       />
 
       {/* SELECTE WEEK DAYS SCHEDULE */}

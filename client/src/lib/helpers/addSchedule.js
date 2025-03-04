@@ -141,7 +141,7 @@ export function addSchedule(
   fetchedSubject,
   date,
   scheduleObj,
-  activeTermSem,
+  selectedTermAndSem,
   activeSchoolYear,
   laboratory,
   currentUser,
@@ -209,7 +209,7 @@ export function addSchedule(
     subjectId: fetchedSubject.id,
     subjectCode: fetchedSubject.code,
     subjectTitle: fetchedSubject.title,
-    term_sem: activeTermSem,
+    term_sem: selectedTermAndSem,
     selected_day: weekdays,
   };
 
