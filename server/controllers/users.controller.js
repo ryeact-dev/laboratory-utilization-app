@@ -35,10 +35,17 @@ const expirationDate = new Date(
  */
 async function getCurrentUserData(req, res, next) {
   const { client_version } = req.query;
-  console.log('client v:', client_version, ':: api client v:', clientVersion);
 
   // Check if client version is valid
   if (client_version !== clientVersion) {
+    console.log(
+      'client v:',
+      client_version,
+      ':: api client v:',
+      clientVersion,
+      ':: user:',
+      req.user.full_name
+    );
     return res.status(403).send('Invalid client version');
   }
 
