@@ -6,7 +6,7 @@ export default function SubjectDetails({ fetchedSubject }) {
         {fetchedSubject.data[0].title.toUpperCase()}{" "}
       </h2>
       <h2>Instructor: {fetchedSubject.data[0].instructor} </h2>
-      <h2>Students: {fetchedSubject.data[0].students.length} / 55</h2>
+      <h2>Students: {fetchedSubject.data[0].students.length} / 50</h2>
     </section>
   ) : (
     <p>No Selected Subject</p>
