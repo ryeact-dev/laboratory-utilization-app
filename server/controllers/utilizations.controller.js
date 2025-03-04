@@ -452,13 +452,13 @@ async function addUtilization(req, res, next) {
 
   // Check if utilization date is behind 1 month
   const monthsDiff = monthDiff(usageDate, new Date());
-  if (monthsDiff > 1) {
+  if (monthsDiff > 6) {
     return res
       .status(409)
       .send(
         `Utilization date ${dateConverter(
           usageDate
-        )} is behind 1 month please check you date`
+        )} is behind 6 month please check you date`
       );
   }
 
