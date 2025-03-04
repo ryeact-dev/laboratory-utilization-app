@@ -78,8 +78,15 @@ export default function UpdateUtilizationUsageModalBody({
       singleUsage?.sched_end_time,
     );
 
-    if (totalUsageTime <= 15 || totalUsageTime > scheduledUsageTime) {
-      return ToastNotification("error", "Invalid usage time");
+    if (totalUsageTime > scheduledUsageTime) {
+      return ToastNotification(
+        "error",
+        "Usage time is more than the alloted scheduled time",
+      );
+    }
+
+    if (totalUsageTime <= 15) {
+      return ToastNotification("error", "Usage time is less than 15mins");
     }
 
     const usageStartTime = new Date(
