@@ -34,9 +34,11 @@ export default function StudentAttendanceForPrint({
               <div className="flex h-6 w-full items-center justify-center">
                 {usage.date && (
                   <p className="text-xs">
-                    {!usage.students_attendance[
-                      studentWorkstationNumber(index)
-                    ] && full_name ? (
+                    {full_name === null ? (
+                      "\u00a0\u00a0"
+                    ) : !usage.students_attendance[
+                        studentWorkstationNumber(index)
+                      ] ? (
                       "Absent"
                     ) : usage.students_attendance[
                         studentWorkstationNumber(index)

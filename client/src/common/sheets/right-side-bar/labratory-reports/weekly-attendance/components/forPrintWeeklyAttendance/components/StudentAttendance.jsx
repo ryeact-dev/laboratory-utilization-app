@@ -85,21 +85,23 @@ function StudentAttendance({
                             : "text-green-600"
                         }`}
                       >
-                        {!usage.students_attendance[
-                          studentWorkstationNumber(index)
-                        ] && full_name
-                          ? "x"
-                          : `${
-                              usage.students_attendance[
+                        {full_name === null
+                          ? "\u00a0\u00a0"
+                          : !usage.students_attendance[
                                 studentWorkstationNumber(index)
-                              ] === "true"
-                                ? "\u2713"
-                                : usage.students_attendance[
-                                      studentWorkstationNumber(index)
-                                    ] === "false"
-                                  ? "x"
-                                  : "\u00a0\u00a0"
-                            }`}
+                              ]
+                            ? "x"
+                            : `${
+                                usage.students_attendance[
+                                  studentWorkstationNumber(index)
+                                ] === "true"
+                                  ? "\u2713"
+                                  : usage.students_attendance[
+                                        studentWorkstationNumber(index)
+                                      ] === "false"
+                                    ? "x"
+                                    : "\u00a0\u00a0"
+                              }`}
                       </h2>
                     )}
                   </TableCell>
