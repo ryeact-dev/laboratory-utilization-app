@@ -1,7 +1,6 @@
 import { ToastNotification } from "@/common/toastNotification/ToastNotification";
 import { WEEKLY_USER_ROLE_STEP } from "@/globals/initialValues";
 import { useGetPaginatedReports } from "@/hooks/instructorWeeklyUsage.hook";
-import { useGetPaginatedLabReports } from "@/hooks/laboratoryWeeklyUsage.hook";
 import { useGetSubmittedMISMNotifications } from "@/hooks/stockCardMISM.hook";
 import { aggregatedUsageReports } from "@/lib/helpers/aggregatedUsageReports";
 import NotificationListItems from "./components/notificationListItems/NotificationListItems";
@@ -32,20 +31,8 @@ export default function Notifications({ currentUserData }) {
   });
   reprotIsError && ToastNotification("error", reportError?.response.data);
 
-  const { data: laboratoryReports } = useGetPaginatedLabReports({
-    userRole: currentUserRole,
-    selectedTermAndSem: activeTermSem,
-    page: 0,
-    reportCount: 200,
-    wasAcknowledged: false,
-  });
-
-  // aggregated laboratory and weekly subject utilization reports
-  const aggregatedReports = aggregatedUsageReports(
-    submittedReports?.reports,
-    laboratoryReports?.reports,
-    currentUser,
-  );
+  // aggregated weekly subject utilization reports
+  const aggregatedReports = aggregatedUsageReports(submittedReports?.reports);
 
   const { data: forAcknowledgement } =
     useGetSubmittedMISMNotifications(activeSchoolYear);

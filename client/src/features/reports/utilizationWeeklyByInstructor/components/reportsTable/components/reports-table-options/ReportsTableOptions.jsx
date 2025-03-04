@@ -55,8 +55,6 @@ export default function ReportsTableOptions({
     is_regular_class: schedule.is_regular_class,
   };
 
-  console.log(schedule);
-
   const onOpenSheetContainer = (componentName, subjectId) => {
     let payload = null;
     let forDeletionData = null;

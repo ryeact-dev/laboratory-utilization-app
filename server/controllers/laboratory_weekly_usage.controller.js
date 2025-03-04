@@ -68,16 +68,16 @@ async function getPaginatedLaboratoryReports(req, res, next) {
     FROM
       laboratory_weekly_usage
     WHERE
-     step = 1 AND selected_date <= $1
+     step = $1 AND term_sem = $2
     `;
 
-    const values = [termsem];
-    const countValues = [termsem];
+    const values = [termsem, page, perpage];
+    const countValues = [[1], termsem];
 
     // Filter by acknowledgment status if specified
     if (wasAcknowledged === 'true') {
       query += ` AND $4 = ANY(lwu.prog_head_id) AND $5 = ANY(lwu.programs) `;
-      values.push(userId, userProgram);
+      values.push([userId], userProgram);
 
       // Filter by selected laboratory if specified
       if (!!selectedLab) {
@@ -98,6 +98,9 @@ async function getPaginatedLaboratoryReports(req, res, next) {
     // Execute both queries concurrently
     const resultPromise = pool.query(query, values);
     const countResultPromise = pool.query(countQuery, countValues);
+
+    console.log(query, values);
+    console.log(countQuery, countValues);
 
     const [result, countResult] = await Promise.all([
       resultPromise,
