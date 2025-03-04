@@ -187,8 +187,8 @@ function ClasslistStudents({
                   }
                 }}
                 disabled={
-                  paginatedClasslist?.hasMore &&
-                  fetchedSubject.data[0].students.length > 0
+                  !paginatedClasslist?.hasMore &&
+                  !fetchedSubject.data[0].students.length > 0
                 }
               >
                 Next
