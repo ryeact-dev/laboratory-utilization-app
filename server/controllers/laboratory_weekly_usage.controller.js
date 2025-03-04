@@ -99,9 +99,6 @@ async function getPaginatedLaboratoryReports(req, res, next) {
     const resultPromise = pool.query(query, values);
     const countResultPromise = pool.query(countQuery, countValues);
 
-    console.log(query, values);
-    console.log(countQuery, countValues);
-
     const [result, countResult] = await Promise.all([
       resultPromise,
       countResultPromise,
