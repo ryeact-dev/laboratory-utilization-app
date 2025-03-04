@@ -13,7 +13,8 @@ export default function UploadClasslistBatchStudents({
   const { subjectId, activeSchoolYear, classlist } = extraObject;
   const [uploadedFile, setUploadedFile] = useState(null);
 
-  const uploadStudentsMutation = useAddBulkStudents(closeModal);
+  const { mutate: uploadStudentsMutation, isPending } =
+    useAddBulkStudents(closeModal);
 
   const onSubmitHandler = (evt) => {
     evt.preventDefault();
@@ -48,7 +49,7 @@ export default function UploadClasslistBatchStudents({
     });
 
     promise.then((d) => {
-      let idNumbers = d.map((item) => item.id);
+      let idNumbers = d.map((item) => item.id_number);
 
       const forUpdatingData = {
         idNumbers,
@@ -64,7 +65,7 @@ export default function UploadClasslistBatchStudents({
         return;
       }
 
-      uploadStudentsMutation.mutate(forUpdatingData);
+      uploadStudentsMutation(forUpdatingData);
     });
   };
 
@@ -85,7 +86,7 @@ export default function UploadClasslistBatchStudents({
         uploadedFile={uploadedFile}
         setUploadedFile={setUploadedFile}
       />
-      <BottomButtons closeModal={closeModal} />
+      <BottomButtons closeModal={closeModal} isLoading={isPending} />
     </form>
   );
 }
