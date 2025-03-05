@@ -463,9 +463,19 @@ async function addUtilization(req, res, next) {
   }
 
   try {
+    // Check if this date already exists in the database
+    const usageDateIsInNoClassDays = await pool.query(
+      'SELECT no_class_date FROM no_class_days WHERE no_class_date = $1',
+      [usageDate]
+    );
+
+    // Return conflict error if date already exists
+    if (usageDateIsInNoClassDays.rows.length > 0) {
+      return res.status(409).send('Selected Date is listed as No-Class Day');
+    }
+
     // Generate a unique ID for the new utilization
     const id = uuidv4();
-    // const usageDate = new Date();
 
     // Search for today's utilization if this utilization already have start time
     // then return if there is alreadt start time
