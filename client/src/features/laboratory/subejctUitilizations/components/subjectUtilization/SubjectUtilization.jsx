@@ -106,11 +106,11 @@ export default function SubjectUtilization({
 
   const chartTitle = (
     <h1 className="flex items-center justify-center gap-6 font-normal">
-      <p className="flex items-center gap-2">
+      <p className="flex items-center gap-2 text-gray-300">
         <TrendingUp strokeWidth={2} size={24} className="text-primary" />
         Accumulated subject utilization hours
       </p>
-      <p className="flex items-center gap-2">
+      <p className="flex items-center gap-2 text-gray-300">
         <TrendingUp strokeWidth={2} size={24} className="text-secondary" />
         Accumulated subject scheduled hours
       </p>
@@ -149,7 +149,7 @@ export default function SubjectUtilization({
 
           <div className="mb-4 flex flex-col items-center justify-between rounded-lg border border-secondary px-4 py-2 text-sm text-secondary md:flex-row">
             <div>
-              <p className="mb-1 text-white">
+              <p className="mb-1 text-gray-300">
                 Accumulated subject utilization hours{" "}
               </p>
               <Badge
@@ -164,7 +164,7 @@ export default function SubjectUtilization({
             </div>
 
             <div>
-              <p className="mb-1 text-white">
+              <p className="mb-1 text-gray-300">
                 Accumulated subject scheduled hours
               </p>
               <Badge

@@ -18,7 +18,7 @@ export default function DataCard({ chartData }) {
             <p className="flex items-center gap-2 pb-1 font-medium text-secondary">
               {item.week}
             </p>
-            <p className="flex items-center gap-2 text-sm">
+            <p className="flex items-center gap-2 text-sm text-gray-300">
               <CalendarClock size={16} className="text-primary-focus" />{" "}
               Regular:
               <span className="font-medium">
@@ -34,7 +34,7 @@ export default function DataCard({ chartData }) {
                   : 0}
               </span>
             </p>
-            <p className="flex items-center gap-2 text-sm">
+            <p className="flex items-center gap-2 text-sm text-gray-300">
               <CalendarPlus size={16} className="text-primary-focus" /> Make-up:{" "}
               <span className="font-medium">
                 {item.reservationClassUsage
@@ -51,7 +51,7 @@ export default function DataCard({ chartData }) {
                   : 0}
               </span>
             </p>
-            <p className="flex items-center gap-2 pb-1 text-sm">
+            <p className="flex items-center gap-2 pb-1 text-sm text-gray-300">
               <ClipboardList size={16} className="text-primary-focus" /> Weekly:
               <span className="font-medium">
                 {item.weeklyUsage
