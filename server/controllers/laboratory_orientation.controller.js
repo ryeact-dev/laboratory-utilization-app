@@ -235,7 +235,7 @@ async function getsSingleLaboratoryOrientation(req, res, next) {
         INNER JOIN
           users AS i ON lo.instructor_id = i.id
         WHERE 
-          lo.subject_code = $1 AND lo.subject_title = $2 AND s.term_sem = $3 AND lo.date_conducted = $4
+          s.code = $1 AND s.title = $2 AND s.term_sem = $3 AND lo.date_conducted = $4
         `;
 
     const queryParams = [code, title, termSemester, new Date(dateConducted)];
