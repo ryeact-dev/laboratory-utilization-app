@@ -21,6 +21,7 @@ export default function BottomButtons({
         <Button
           type="button"
           variant="destructive"
+          size="sm"
           onClick={() => closeModal()}
         >
           <p className="flex items-center gap-1">
@@ -32,6 +33,7 @@ export default function BottomButtons({
         <Button
           variant="secondary"
           type="submit"
+          size="sm"
           className={`w-44 px-6 font-semibold normal-case`}
           disabled={isLoading}
         >

@@ -107,7 +107,7 @@ export default function PasswordInputs({ form }) {
         {requirements.map((req) => (
           <li
             key={req.id}
-            className={`text-sm ${req.met ? "text-green-400 line-through" : "font-thin text-gray-100"}`}
+            className={`text-xs ${req.met ? "italic text-green-400" : "font-thin text-gray-100"}`}
           >
             {req.text}
           </li>
