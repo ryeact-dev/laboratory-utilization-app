@@ -2,8 +2,10 @@ import { useState } from "react";
 import ReportHeader from "../report-header/ReportHeader";
 import { DatePicker } from "@/common/date-picker/DatePicker";
 import { format } from "date-fns";
-import { calculateUsageTime, getUsageTime } from "@/lib/helpers/dateTime";
-import { Button } from "@/common/ui/button";
+import {
+  calculateUsageTime,
+  getUsageTimeAndDate,
+} from "@/lib/helpers/dateTime";
 import { Clock } from "lucide-react";
 import { Badge } from "@/common/ui/badge";
 import StartClassButton from "./components/manual-utilization-buttons/start-class-button/StartClassButton";
@@ -78,19 +80,22 @@ export default function AddManualUtilizationSheetBody({ dataObj }) {
     setUsageDate(date);
   };
 
-  const usageStartHour = format(new Date(schedule?.sched_start_time), "hh");
-  const usageEndHour = format(new Date(schedule?.sched_end_time), "hh");
-
-  const usageStartMinute = format(new Date(schedule?.sched_start_time), "mm");
-  const usageEndMinute = format(new Date(schedule?.sched_end_time), "mm");
-
-  const usageStartAMPM = format(new Date(schedule?.sched_start_time), "a");
-  const usageEndAMPM = format(new Date(schedule?.sched_end_time), "a");
-
-  const tempTotalUsageTime = getUsageTime(
-    schedule?.sched_start_time,
-    schedule?.sched_end_time,
-  );
+  const {
+    schedEndHour,
+    schedStartHour,
+    tempTotalUsageTime,
+    usageEndAMPM,
+    usageEndHour,
+    usageEndMinute,
+    usageStartAMPM,
+    usageStartHour,
+    usageStartMinute,
+  } =
+    getUsageTimeAndDate({
+      ...schedule,
+      end_time: schedule.sched_end_time,
+      start_time: schedule.sched_start_time,
+    }) || {};
 
   const [totalUsageTime, setTotalUsageTime] = useState(tempTotalUsageTime);
   const [startTime, setStartTime] = useState({
@@ -140,8 +145,8 @@ export default function AddManualUtilizationSheetBody({ dataObj }) {
         setEndTime={setEndTime}
         startTime={startTime}
         endTime={endTime}
-        usageStartHour={usageStartHour}
-        usageEndHour={usageEndHour}
+        schedStartHour={schedStartHour}
+        schedEndHour={schedEndHour}
         usageDate={usageDate}
         setTotalUsageTime={setTotalUsageTime}
         formatUsageDateAndTime={formatUsageDateAndTime}

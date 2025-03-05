@@ -169,3 +169,34 @@ export const calculateUsageTime = (usageTime, forPrinting) => {
     } else return 0;
   }
 };
+
+export function getUsageTimeAndDate(schedule) {
+  const schedStartHour = format(new Date(schedule?.sched_start_time), "hh");
+  const schedEndHour = format(new Date(schedule?.sched_end_time), "hh");
+
+  const usageStartHour = format(new Date(schedule?.start_time), "hh");
+  const usageEndHour = format(new Date(schedule?.end_time), "hh");
+
+  const usageStartMinute = format(new Date(schedule?.start_time), "mm");
+  const usageEndMinute = format(new Date(schedule?.end_time), "mm");
+
+  const usageStartAMPM = format(new Date(schedule?.start_time), "a");
+  const usageEndAMPM = format(new Date(schedule?.end_time), "a");
+
+  const tempTotalUsageTime = getUsageTime(
+    schedule?.start_time,
+    schedule?.end_time,
+  );
+
+  return {
+    usageStartHour,
+    usageEndHour,
+    usageStartMinute,
+    usageEndMinute,
+    usageStartAMPM,
+    usageEndAMPM,
+    tempTotalUsageTime,
+    schedStartHour,
+    schedEndHour,
+  };
+}

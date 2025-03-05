@@ -4,9 +4,13 @@ import { ToastNotification } from "@/common/toastNotification/ToastNotification"
 import { Label } from "@/common/ui/label";
 import { HOURS_12, TIME_SECONDS } from "@/globals/initialValues";
 import { useUpdateUtilizationTimeAndUsage } from "@/hooks/utilizations.hook";
-import { calculateUsageTime, getUsageTime } from "@/lib/helpers/dateTime";
+import {
+  calculateUsageTime,
+  getUsageTime,
+  getUsageTimeAndDate,
+} from "@/lib/helpers/dateTime";
 import { format } from "date-fns";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function UpdateUtilizationUsageModalBody({
   extraObject: singleUsage,
@@ -15,24 +19,19 @@ export default function UpdateUtilizationUsageModalBody({
   const { mutate: updateUtilizationTimeAndUsageMutation, isPending } =
     useUpdateUtilizationTimeAndUsage(closeModal);
 
-  const schedStartHour = format(new Date(singleUsage?.sched_start_time), "hh");
-  const schedEndHour = format(new Date(singleUsage?.sched_end_time), "hh");
-
   const usageDate = format(new Date(singleUsage?.usage_date), "MMM dd, yyyy");
 
-  const usageStartHour = format(new Date(singleUsage?.start_time), "hh");
-  const usageEndHour = format(new Date(singleUsage?.end_time), "hh");
-
-  const usageStartMinute = format(new Date(singleUsage?.start_time), "mm");
-  const usageEndMinute = format(new Date(singleUsage?.end_time), "mm");
-
-  const usageStartAMPM = format(new Date(singleUsage?.start_time), "a");
-  const usageEndAMPM = format(new Date(singleUsage?.end_time), "a");
-
-  const tempTotalUsageTime = getUsageTime(
-    singleUsage?.start_time,
-    singleUsage?.end_time,
-  );
+  const {
+    schedEndHour,
+    schedStartHour,
+    tempTotalUsageTime,
+    usageEndAMPM,
+    usageEndHour,
+    usageEndMinute,
+    usageStartAMPM,
+    usageStartHour,
+    usageStartMinute,
+  } = getUsageTimeAndDate(singleUsage) || {};
 
   const [totalUsageTime, setTotalUsageTime] = useState(tempTotalUsageTime);
   const [startTime, setStartTime] = useState({
@@ -47,22 +46,48 @@ export default function UpdateUtilizationUsageModalBody({
     ampm: usageEndAMPM,
   });
 
+  const formatUsageDateAndTime = (time) => {
+    const formattedDateAndTime = new Date(
+      `${usageDate} ${time.hr}:${time.mins} ${time.ampm}`,
+    );
+
+    return formattedDateAndTime;
+  };
+
+  const updateUsageTime = (startTime, endTime) => {
+    const usageStartTime = formatUsageDateAndTime(startTime);
+    const usageEndTime = formatUsageDateAndTime(endTime);
+
+    setTotalUsageTime(getUsageTime(usageStartTime, usageEndTime));
+  };
+
   const onTimeChange = (value, field) => {
+    let updatedStartTime = startTime;
+    let updatedEndTime = endTime;
+
     switch (field) {
       case "start-hr":
         setStartTime((prev) => ({ ...prev, hr: value }));
+        updatedStartTime = { ...updatedStartTime, hr: value };
+        updateUsageTime(updatedStartTime, updatedEndTime);
         break;
 
       case "start-mins":
         setStartTime((prev) => ({ ...prev, mins: value }));
+        updatedStartTime = { ...updatedStartTime, mins: value };
+        updateUsageTime(updatedStartTime, updatedEndTime);
         break;
 
       case "end-hr":
         setEndTime((prev) => ({ ...prev, hr: value }));
+        updatedEndTime = { ...updatedEndTime, hr: value };
+        updateUsageTime(updatedStartTime, updatedEndTime);
         break;
 
       case "end-mins":
         setEndTime((prev) => ({ ...prev, mins: value }));
+        updatedEndTime = { ...updatedEndTime, mins: value };
+        updateUsageTime(updatedStartTime, updatedEndTime);
         break;
 
       default:
@@ -107,23 +132,13 @@ export default function UpdateUtilizationUsageModalBody({
     updateUtilizationTimeAndUsageMutation(forUpdatingData);
   };
 
-  useEffect(() => {
-    const usageStartTime = new Date(
-      `${usageDate} ${startTime.hr}:${startTime.mins} ${startTime.ampm}`,
-    );
-
-    const usageEndTime = new Date(
-      `${usageDate} ${endTime.hr}:${endTime.mins} ${endTime.ampm}`,
-    );
-
-    setTotalUsageTime(getUsageTime(usageStartTime, usageEndTime));
-  }, [endTime, startTime, usageDate]);
-
   const filteredHours = HOURS_12.filter(
     (hour) =>
       Number(hour.value) >= Number(schedStartHour) &&
       Number(hour.value) <= Number(schedEndHour),
   );
+
+  console.log(schedEndHour, schedStartHour);
 
   return (
     <form onSubmit={onSubmitHandle}>
