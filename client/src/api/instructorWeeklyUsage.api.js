@@ -8,7 +8,7 @@ export async function getSubmittedReports({ forQueryData }) {
     reportCount,
     userRoleStep,
     wasAcknowledged,
-    laboratory,
+    laboratory = "",
   } = forQueryData;
 
   return await axios.get(
