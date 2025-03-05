@@ -72,7 +72,7 @@ export default function ReportsTableOptions({
           isForAcknowledgement: wasAcknowledged ? false : true,
           currentUser,
           activeSchoolYear,
-          className: "w-[750px]",
+          className: "w-[calc(100%-50%)]",
         };
 
         setComponentName(componentName);
@@ -92,7 +92,7 @@ export default function ReportsTableOptions({
           weekNumber: schedule?.week_number,
           currentUser,
           activeSchoolYear,
-          className: "",
+          className: "w-[calc(100%-35%)]",
         };
 
         setComponentName(componentName);
@@ -112,7 +112,7 @@ export default function ReportsTableOptions({
           weekNumber: schedule?.week_number,
           currentUser,
           activeSchoolYear,
-          className: "w-[700px]",
+          className: "w-[calc(100%-50%)]",
         };
 
         setComponentName(componentName);

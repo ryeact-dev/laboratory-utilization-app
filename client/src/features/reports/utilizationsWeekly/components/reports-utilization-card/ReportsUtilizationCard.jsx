@@ -79,7 +79,7 @@ export default function ReportsUtilizationCard({
           activeSchoolYear,
           termSemStartingDate,
           currentUser,
-          className: "w-[750px]",
+          className: "w-[calc(100%-50%)]",
         };
 
         setComponentName(componentName);
@@ -103,7 +103,7 @@ export default function ReportsUtilizationCard({
           activeSchoolYear,
           termSemStartingDate,
           currentUser,
-          className: "w-[900px]",
+          className: "w-[calc(100%-35%)]",
         };
 
         setComponentName(componentName);
@@ -127,7 +127,7 @@ export default function ReportsUtilizationCard({
           activeSchoolYear,
           termSemStartingDate,
           currentUser,
-          className: "w-[700px]",
+          className: "w-[calc(100%-50%)]",
         };
 
         setComponentName(componentName);
@@ -147,7 +147,7 @@ export default function ReportsUtilizationCard({
           activeSchoolYear,
           termSemStartingDate,
           currentUser,
-          className: "w-[500px]",
+          className: "w-[calc(100%-55%)]",
         };
 
         setComponentName(componentName);
