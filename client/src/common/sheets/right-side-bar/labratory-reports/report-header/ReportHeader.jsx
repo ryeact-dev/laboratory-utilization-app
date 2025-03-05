@@ -22,8 +22,6 @@ export default function ReportHeader({
     subject_end_time,
   } = schedule;
 
-  console.log(schedule);
-
   return (
     <div className="my-2 flex w-full items-center rounded-md bg-secondary p-2 text-black">
       <div className="flex flex-1 flex-col items-start justify-center pl-4">
