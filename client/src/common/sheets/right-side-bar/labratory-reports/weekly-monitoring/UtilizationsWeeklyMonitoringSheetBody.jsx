@@ -125,89 +125,93 @@ export default function UtilizationsWeeklyMonitoringSheetBody({ dataObj }) {
               )}
           </div>
 
-          {listOfLabMonitoring?.map((usage, index) => (
-            <Card key={index} className="bg-background">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between gap-2">
-                  <div>
-                    <p className="font-semibold uppercase text-secondary">
-                      {`${format(new Date(usage.usage_date), "MMM dd, yyyy")}`}
-                    </p>
-                    {/* <p className="-mt-1 text-sm">
+          {listOfLabMonitoring
+            ?.sort((a, b) => new Date(a.usage_date) - new Date(b.usage_date))
+            .map((usage, index) => (
+              <Card key={index} className="bg-background">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between gap-2">
+                    <div>
+                      <p className="font-semibold uppercase text-secondary">
+                        {`${format(new Date(usage.usage_date), "MMM dd, yyyy")}`}
+                      </p>
+                      {/* <p className="-mt-1 text-sm">
                         {`${format(
                           new Date(usage.start_time),
                           "hh:mm a",
                         )} - ${format(new Date(usage.end_time), "hh:mm a")}`}
                       </p> */}
+                    </div>
+
+                    <div className="">
+                      {currentUser.role === "Admin" && (
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="icon"
+                              onClick={() => openRemarksModal(usage.id)}
+                              className="hover:text-secondary"
+                            >
+                              <SquarePen size={18} strokeWidth={2} />
+                            </Button>
+                          </TooltipTrigger>
+
+                          <TooltipContent className="bg-secondary px-2 py-1 text-xs text-secondary-foreground">
+                            Edit
+                          </TooltipContent>
+                        </Tooltip>
+                      )}
+                    </div>
                   </div>
 
-                  <div className="">
-                    {currentUser.role === "Admin" && (
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="icon"
-                            onClick={() => openRemarksModal(usage.id)}
-                            className="hover:text-secondary"
-                          >
-                            <SquarePen size={18} strokeWidth={2} />
-                          </Button>
-                        </TooltipTrigger>
-
-                        <TooltipContent className="bg-secondary px-2 py-1 text-xs text-secondary-foreground">
-                          Edit
-                        </TooltipContent>
-                      </Tooltip>
-                    )}
-                  </div>
-                </div>
-
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className={TABLE_HEADER_BADGE_CLASS}>
-                        Remark
-                      </TableHead>
-                      <TableHead className={TABLE_HEADER_BADGE_CLASS}>
-                        PC No.
-                      </TableHead>
-                      <TableHead className={TABLE_HEADER_BADGE_CLASS}>
-                        Description
-                      </TableHead>
-                      <TableHead className={TABLE_HEADER_BADGE_CLASS}>
-                        Ticket No.
-                      </TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {listOfLabMonitoring[index].details.map((detail, index) => (
-                      <TableRow key={index}>
-                        <TableCell>{detail.remark}</TableCell>
-
-                        <TableCell>
-                          {Number(detail.unit_number) <= 0
-                            ? "-"
-                            : detail.unit_number}
-                        </TableCell>
-                        <TableCell>
-                          {detail.remark === "Internet Speed"
-                            ? `${detail.problem} MBPS`
-                            : detail.remark === "No problems found"
-                              ? "-"
-                              : detail.problem
-                                ? detail.problem
-                                : "-"}
-                        </TableCell>
-                        <TableCell>
-                          {detail.ticket_no ? detail.ticket_no : "-"}
-                        </TableCell>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className={TABLE_HEADER_BADGE_CLASS}>
+                          Remark
+                        </TableHead>
+                        <TableHead className={TABLE_HEADER_BADGE_CLASS}>
+                          PC No.
+                        </TableHead>
+                        <TableHead className={TABLE_HEADER_BADGE_CLASS}>
+                          Description
+                        </TableHead>
+                        <TableHead className={TABLE_HEADER_BADGE_CLASS}>
+                          Ticket No.
+                        </TableHead>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
-          ))}
+                    </TableHeader>
+                    <TableBody>
+                      {listOfLabMonitoring[index].details.map(
+                        (detail, index) => (
+                          <TableRow key={index}>
+                            <TableCell>{detail.remark}</TableCell>
+
+                            <TableCell>
+                              {Number(detail.unit_number) <= 0
+                                ? "-"
+                                : detail.unit_number}
+                            </TableCell>
+                            <TableCell>
+                              {detail.remark === "Internet Speed"
+                                ? `${detail.problem} MBPS`
+                                : detail.remark === "No problems found"
+                                  ? "-"
+                                  : detail.problem
+                                    ? detail.problem
+                                    : "-"}
+                            </TableCell>
+                            <TableCell>
+                              {detail.ticket_no ? detail.ticket_no : "-"}
+                            </TableCell>
+                          </TableRow>
+                        ),
+                      )}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            ))}
         </article>
       ) : (
         <NoRecordsFound>No Records Found.</NoRecordsFound>
