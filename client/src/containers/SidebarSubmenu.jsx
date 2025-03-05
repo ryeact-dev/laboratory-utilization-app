@@ -95,7 +95,7 @@ export default function SidebarSubmenu({
     <div
       className={`flex flex-col bg-transparent hover:!cursor-default hover:!bg-transparent`}
     >
-      <div className="-ml-2 mb-3.5 mt-5 w-full text-sm font-semibold">
+      <div className="-ml-2 mb-3.5 mt-5 w-full text-xs text-secondary">
         {name}
       </div>
 
@@ -111,7 +111,7 @@ export default function SidebarSubmenu({
                   currentPath === m.path
                     ? `rounded-md !font-medium text-secondary opacity-100`
                     : "opacity-80 hover:!bg-transparent hover:!text-secondary hover:opacity-100 focus:!text-secondary"
-                } -ml-5 flex gap-1 px-2 py-1 text-xs font-thin transition duration-300 ease-in-out`}
+                } -ml-5 flex gap-2 px-2 py-1 text-xs font-thin transition duration-300 ease-in-out`}
               >
                 {m.icon} {m.name}
               </NavLink>
@@ -122,39 +122,3 @@ export default function SidebarSubmenu({
     </div>
   );
 }
-
-//   <div
-//   className={`collapse collapse-plus bg-transparent hover:!cursor-default hover:!bg-transparent p-1`}
-// >
-//   <input type='radio' name='accordion-menu' />
-//   {/** ROUTE HEADER */}
-//   <div className='collapse-title text-xs text-accent font-medium tracking-wider hover:!bg-primary '>
-//     {icon} {name}
-//   </div>
-//   {/** SUBMIT LIST */}
-//   <div className='collapse-content -mt-6'>
-//     {filteredSubMenu?.map((m, k) => {
-//       return (
-//         <div
-//           key={k}
-//           className={`${
-//             currentPath === m.path ? '' : 'md:nav-link md:after:-ml-2'
-//           } w-24`}
-//         >
-//           <NavLink
-//             end
-//             to={m.path}
-//             onClick={() => closeDrawer()}
-//             className={`${
-//               currentPath === m.path
-//                 ? `!text-white !font-normal !bg-primary rounded-md hover:!text-white w-48`
-//                 : 'hover:!bg-transparent hover:!text-blue-eraser focus:!text-primary'
-//             } -ml-2 pl-2 font-thin transition duration-500 ease-in-out py-2 text-white text-xs flex gap-2 w-48 `}
-//           >
-//             {m.icon} {m.name}
-//           </NavLink>
-//         </div>
-//       );
-//     })}
-//   </div>
-// </div>
