@@ -6,7 +6,8 @@ import { getRelativeWeekNumber } from "@/lib/helpers/dateTime";
 import { useGetListOfNoClassDays } from "@/hooks/noClassDays.hook";
 import { LineDottedChart } from "@/common/charts/LineDottedChart";
 import SelectItems from "@/common/select/SelectIems";
-import { TrendingUp } from "lucide-react";
+import { CircleUserRound, Clock, Presentation, TrendingUp } from "lucide-react";
+import { Badge } from "@/common/ui/badge";
 
 const DataCard = lazy(() => import("./components/DataCard"));
 
@@ -104,14 +105,14 @@ export default function SubjectUtilization({
   }, [laboratory, selectedTermAndSem]);
 
   const chartTitle = (
-    <h1 className="flex items-center justify-center gap-4 font-normal">
+    <h1 className="flex items-center justify-center gap-6 font-normal">
       <p className="flex items-center gap-2">
         <TrendingUp strokeWidth={2} size={24} className="text-primary" />
-        Subject Utilization
+        Accumulated subject utilization hours
       </p>
       <p className="flex items-center gap-2">
         <TrendingUp strokeWidth={2} size={24} className="text-secondary" />
-        Accumulated Lab Hours
+        Accumulated subject scheduled hours
       </p>
     </h1>
   );
@@ -125,34 +126,58 @@ export default function SubjectUtilization({
       subCard={true}
     >
       {chartData ? (
-        <div>
-          <article className="mb-4 flex flex-col items-center justify-between rounded-lg border border-secondary px-4 py-2 text-sm font-medium text-secondary md:flex-row">
-            <div>
-              <p className="">Subject: </p>
+        <>
+          <div className="mb-4 flex flex-col items-center justify-between rounded-lg border border-secondary px-4 py-2 font-medium text-secondary md:flex-row">
+            <div className="flex items-center gap-2">
+              <Presentation strokeWidth={2} size={20} />
               <p>{selectedSubject?.label}</p>
             </div>
 
-            <div>
-              <p className="">Instructor:</p>
+            <div className="flex items-center gap-2">
+              <CircleUserRound strokeWidth={2} size={20} />
               <p>{selectedSubject?.instructor}</p>
             </div>
-            <div>
-              <p className="">Time:</p>
+
+            <div className="flex items-center gap-2">
+              <Clock strokeWidth={2} size={20} />
               <p>
                 {format(new Date(selectedSubject?.startTime), "hh:mma")} -{" "}
                 {format(new Date(selectedSubject?.endTime), "hh:mma")}
               </p>
             </div>
+          </div>
+
+          <div className="mb-4 flex flex-col items-center justify-between rounded-lg border border-secondary px-4 py-2 text-sm text-secondary md:flex-row">
+            <div>
+              <p className="mb-1 text-white">
+                Accumulated subject utilization hours{" "}
+              </p>
+              <Badge
+                variant={"error"}
+                className={
+                  "space-x-1 border-none bg-primary px-4 py-0.5 font-medium text-white hover:!bg-primary"
+                }
+              >
+                <Clock strokeWidth={3} size={14} />
+                <p>{initialData[initialData.length - 1] || 0} Hrs</p>
+              </Badge>
+            </div>
 
             <div>
-              <p className="">Lab Usage: </p>
-              <p>{initialData[initialData.length - 1] || 0} Hrs</p>
+              <p className="mb-1 text-white">
+                Accumulated subject scheduled hours
+              </p>
+              <Badge
+                variant={"secondary"}
+                className={
+                  "space-x-1 rounded-full border-none px-4 py-0.5 font-semibold hover:!bg-secondary"
+                }
+              >
+                <Clock strokeWidth={3} size={14} />
+                <p>{labHours[labHours.length - 1] || 0} Hrs</p>
+              </Badge>
             </div>
-            <div>
-              <p className="">Schedule hrs:</p>
-              <p>{labHours[labHours.length - 1] || 0} Hrs</p>
-            </div>
-          </article>
+          </div>
           <div className="rounded-lg bg-gray-700/20">
             <LineDottedChart
               chartTitle={chartTitle}
@@ -160,7 +185,7 @@ export default function SubjectUtilization({
             />
           </div>
           <DataCard chartData={chartData || []} />
-        </div>
+        </>
       ) : (
         <p className="text-center text-sm">Please select a subject.</p>
       )}
