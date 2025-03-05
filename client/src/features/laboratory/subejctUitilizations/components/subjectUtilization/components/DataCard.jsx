@@ -6,6 +6,8 @@ import {
 } from "lucide-react";
 
 export default function DataCard({ chartData }) {
+  console.log(chartData.weekly_usage);
+
   return (
     <div className="grid grid-cols-1 gap-4 py-4 md:grid-cols-2">
       {chartData &&
@@ -24,10 +26,10 @@ export default function DataCard({ chartData }) {
               <span className="font-medium">
                 {item.regularClassUsage
                   ? ` 
-              ${item.regularClassUsage < 1 ? item.regularClassUsage.toString().split(".")[1] : item.regularClassUsage} ${
-                item.regularClassUsage > 1
+              ${Number(item.regularClassUsage) < 1 ? item.regularClassUsage.toString().split(".")[1] : item.regularClassUsage} ${
+                Number(item.regularClassUsage) > 1
                   ? "hrs"
-                  : item.regularClassUsage === 1
+                  : Number(item.regularClassUsage) === 1
                     ? "hr"
                     : "mins"
               }`
@@ -39,10 +41,10 @@ export default function DataCard({ chartData }) {
               <span className="font-medium">
                 {item.reservationClassUsage
                   ? ` 
-              ${item.reservationClassUsage < 1 ? item.reservationClassUsage.toString().split(".")[1] : item.reservationClassUsage} ${
-                item.reservationClassUsage > 1
+              ${Number(item.reservationClassUsage) < 1 ? item.reservationClassUsage.toString().split(".")[1] : item.reservationClassUsage} ${
+                Number(item.reservationClassUsage) > 1
                   ? "hrs"
-                  : item.reservationClassUsage === 1
+                  : Number(item.reservationClassUsage) === 1
                     ? "hr"
                     : Number(item.reservationClassUsage) < 0
                       ? ""

@@ -155,7 +155,7 @@ export const calculateUsageTime = (usageTime, forPrinting) => {
 
   if (forPrinting) {
     if (hour > 0) {
-      return `${hour}${minutes > 0 ? `.${minutes}` : ""} `;
+      return `${hour}${minutes > 0 ? `.${minutes}` : ""}`;
     } else if (minutes > 0) {
       return `.${minutes}`;
     } else return 0;
