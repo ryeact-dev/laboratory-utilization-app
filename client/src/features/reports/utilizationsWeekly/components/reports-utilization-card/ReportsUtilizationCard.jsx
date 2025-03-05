@@ -79,7 +79,7 @@ export default function ReportsUtilizationCard({
           activeSchoolYear,
           termSemStartingDate,
           currentUser,
-          className: "w-[calc(100%-50%)]",
+          className: "w-[calc(100%-45%)]",
         };
 
         setComponentName(componentName);
