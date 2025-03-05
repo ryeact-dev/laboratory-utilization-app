@@ -22,6 +22,8 @@ export default function ReportHeader({
     subject_end_time,
   } = schedule;
 
+  console.log(schedule);
+
   return (
     <div className="my-2 flex w-full items-center rounded-md bg-secondary p-2 text-black">
       <div className="flex flex-1 flex-col items-start justify-center pl-4">
@@ -47,25 +49,23 @@ export default function ReportHeader({
         <div className="flex items-center gap-1 font-bold">
           <Clock size={16} strokeWidth={3} />
           <p>
-            {/* {format(
+            {format(
               new Date(
-                subject_start_time
-                  ? `2024-03-15T${subject_start_time}`
-                  : sched_start_time,
+                sched_start_time
+                  ? sched_start_time
+                  : `2024-03-15T${subject_start_time}`,
               ),
               "hh:mm a",
             )}{" "}
             -{" "}
             {format(
               new Date(
-                subject_start_time
-                  ? `2024-03-15T${subject_end_time}`
-                  : sched_end_time,
+                sched_end_time
+                  ? sched_end_time
+                  : `2024-03-15T${subject_end_time}`,
               ),
               "hh:mm a",
-            )} */}
-            {format(new Date(sched_start_time), "hh:mm a")} -{" "}
-            {format(new Date(sched_end_time), "hh:mm a")}
+            )}
           </p>
         </div>
         <div className="flex items-center gap-1 font-bold">
