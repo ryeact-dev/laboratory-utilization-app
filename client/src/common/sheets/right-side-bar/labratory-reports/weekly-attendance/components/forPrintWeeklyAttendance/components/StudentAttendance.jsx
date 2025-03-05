@@ -45,7 +45,7 @@ function StudentAttendance({
                     </Button>
                   )}
                   <p className="text-center">
-                    {usage_date && format(new Date(usage_date), "MMM dd")}
+                    {usage_date && format(new Date(usage_date), "MM/dd")}
                   </p>
                 </div>
               </TableHead>
