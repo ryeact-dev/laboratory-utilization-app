@@ -86,17 +86,17 @@ export default function UserMenu({ currentUser }) {
   const userManu = [
     {
       name: "User Profile",
-      icon: <User size={18} />,
+      icon: <User size={14} />,
       onClick: () => openProfileModal(),
     },
     {
       name: "Change Password",
-      icon: <LockKeyhole size={18} />,
+      icon: <LockKeyhole size={14} />,
       onClick: () => openUpdatePasswordModal(currentUser.userId),
     },
     {
       name: "Wifi Vouchers",
-      icon: <Wifi size={18} />,
+      icon: <Wifi size={14} />,
       onClick: () => openWifiVoucherModal(),
     },
   ];
@@ -116,10 +116,10 @@ export default function UserMenu({ currentUser }) {
         {userManu.map((item, index) => (
           <DropdownMenuItem
             key={index}
-            className="hover:!bg-transparent"
+            className="text-xs hover:cursor-pointer hover:!bg-transparent hover:text-secondary"
             onClick={item.onClick}
           >
-            <div className="nav-link after:mt-1">
+            <div className="">
               <p className="flex items-center gap-2 hover:text-secondary">
                 {item.icon}
                 {item.name}
@@ -130,12 +130,12 @@ export default function UserMenu({ currentUser }) {
 
         {currentUser.role === "Admin" && (
           <DropdownMenuItem
-            className="hover:!bg-transparent"
+            className="text-xs hover:cursor-pointer hover:!bg-transparent"
             onClick={onPageReloadClick}
           >
-            <div className="nav-link after:mt-1">
+            <div className="">
               <p className="flex items-center gap-2 hover:text-secondary">
-                <RotateCcw size={18} /> Reload Page
+                <RotateCcw size={14} /> Reload Page
               </p>
             </div>
           </DropdownMenuItem>
@@ -144,9 +144,9 @@ export default function UserMenu({ currentUser }) {
       <DropdownMenuSeparator />
       <DropdownMenuItem
         onClick={logoutUser}
-        className="w-full font-bold normal-case text-primary hover:!bg-primary hover:font-normal hover:text-white"
+        className="w-full text-xs font-bold normal-case text-primary hover:!bg-primary hover:font-normal hover:text-white"
       >
-        <LogOut size={18} /> Logout
+        <LogOut size={14} /> Logout
       </DropdownMenuItem>
     </>
   );
