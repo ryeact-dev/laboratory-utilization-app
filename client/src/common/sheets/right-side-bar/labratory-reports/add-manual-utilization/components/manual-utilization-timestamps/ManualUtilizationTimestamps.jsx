@@ -54,9 +54,24 @@ export default function ManualUtilizationTimestamps({
     }
   };
 
-  const filteredHours = HOURS_12.filter(
-    (hour) => hour.value === usageStartHour || hour.value === usageEndHour,
-  );
+  // const filteredHours = HOURS_12.filter((hour) => {
+  //   console.log(Number(hour.value), Number(usageStartHour));
+  //   console.log(Number(hour.value) <= Number(usageStartHour));
+  //   console.log(Number(hour.value), Number(usageEndHour));
+  //   console.log(Number(hour.value) >= Number(usageEndHour));
+
+  //   console.log(
+  //     Number(hour.value) <= Number(usageStartHour) &&
+  //       Number(hour.value) >= Number(usageEndHour),
+  //   );
+
+  //   return (
+  //     Number(hour.value) >= Number(usageStartHour) &&
+  //     Number(hour.value) <= Number(usageEndHour)
+  //   );
+  // });
+
+  // console.log(Number(usageStartHour));
 
   return (
     <div className="mt-6 flex items-center justify-center gap-3">
@@ -71,7 +86,7 @@ export default function ManualUtilizationTimestamps({
             <SelectItems
               selectContentClassName="min-w-[1rem]"
               placeholderWidth={"w-16"}
-              dataArray={filteredHours}
+              dataArray={HOURS_12}
               value={startTime.hr}
               onValueChange={(value) => onTimeChange(value, "start-hr")}
             />
@@ -100,7 +115,7 @@ export default function ManualUtilizationTimestamps({
             <SelectItems
               selectContentClassName="min-w-[1rem]"
               placeholderWidth={"w-16"}
-              dataArray={filteredHours}
+              dataArray={HOURS_12}
               value={endTime.hr}
               onValueChange={(value) => onTimeChange(value, "end-hr")}
             />
