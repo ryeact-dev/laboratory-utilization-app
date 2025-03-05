@@ -10,10 +10,10 @@ export default function NotificationListItems({
   const items =
     userRole === "Admin" ? (
       listItems?.length > 0 ? (
-        listItems?.map((item) => (
+        listItems?.map((item, index) => (
           <Link
             onClick={onItemClick}
-            key={item.id}
+            key={index}
             to={`/lumens/app/inventory-stock-card?termsem=2nd+Term+-+2nd+Sem&tab=3&page=1&q=${item.laboratory_name}`}
             className="flex flex-col items-start rounded-md p-2 hover:bg-gray-500/10"
           >
@@ -31,10 +31,10 @@ export default function NotificationListItems({
         <p className="text-xs">No Notifications</p>
       )
     ) : listItems?.length > 0 ? (
-      listItems?.map((item) => (
+      listItems?.map((item, index) => (
         <Link
           onClick={onItemClick}
-          key={item.id}
+          key={index}
           to={
             item.isSubject
               ? `/lumens/app/reports-utilizations-weekly-instructor?termsem=${item.termSem}&page=1&tab=1`
